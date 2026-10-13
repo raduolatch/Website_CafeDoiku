@@ -31,7 +31,92 @@
      <!-- app -->
       <script src="src/app.js"></script>
 </head>
-<body>
+<body class="bg-surface text-white">
+
+    <!-- Navbar start -->
+  <nav class="navbar fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-primary bg-black/80 px-[7%] py-5" x-data>
+    <a href="#" class="navbar-logo text-2xl font-bold">Kafe Doi<span class="text-primary">KU</span>.</a>
+
+    <div class="navbar-nav absolute right-[-100%] top-full flex h-screen w-72 flex-col bg-white transition-all duration-300 md:static md:h-auto md:w-auto md:flex-row md:gap-8 md:bg-transparent">
+      <a class="m-6 text-xl text-surface hover:text-primary md:m-0 md:text-base md:text-white" href="#home">Home</a>
+      <a class="m-6 text-xl text-surface hover:text-primary md:m-0 md:text-base md:text-white" href="#about">Tentang Kami</a>
+      <a class="m-6 text-xl text-surface hover:text-primary md:m-0 md:text-base md:text-white" href="#menu">Menu</a>
+      <a class="m-6 text-xl text-surface hover:text-primary md:m-0 md:text-base md:text-white" href="#products">Produk</a>
+      <a class="m-6 text-xl text-surface hover:text-primary md:m-0 md:text-base md:text-white" href="#contact">Kontak</a>
+    </div>
+
+    <div class="navbar-extra flex items-center gap-4">
+      <a class="hover:text-primary" href="#" id="search-button"><i data-feather="search"></i></a>
+      <a class="relative hover:text-primary" href="#" id="shopping-cart-button">
+        <i data-feather="shopping-cart"></i>
+        <span class="quantity-badge absolute -right-3 -top-2 rounded-md bg-red-600 px-1.5 text-xs" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+      </a>
+      <a class="md:hidden" href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+    </div>
+
+    <!-- Search Form start -->
+    <div class="search-form absolute right-[7%] top-full flex h-16 w-[90%] origin-top scale-y-0 items-center bg-white transition-transform duration-300 md:w-[40rem]">
+      <input class="h-full w-full p-4 text-lg text-surface outline-none" type="search" id="search-box" placeholder="search here...">
+      <label class="mr-6 cursor-pointer text-surface" for="search-box"><i data-feather="search"></i></label>
+    </div>
+    <!-- Search Form end -->
+
+    <!-- Shopping Cart start -->
+    <div class="shopping-cart absolute right-[-100%] top-full h-screen w-full overflow-y-auto bg-white px-6 text-surface transition-all duration-300 sm:w-[35rem]">
+      <template x-for="(item, index) in $store.cart.items" x-keys="index">
+      <div class="cart-item relative my-8 flex items-center gap-6 border-b border-dashed border-gray-500 pb-4">
+        <img class="h-16 w-16 rounded-full object-cover" :src="`img/${item.img}`" :alt="item.name">
+        <div class="item-detail">
+          <h3 class="pb-2 text-lg" x-text="item.name"></h3>
+          <div class="text-sm">
+            <span x-text="rupiah(item.price)"></span> &times;
+            <button class="mx-2 bg-surface px-1.5 font-bold text-white" id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+            <span x-text="item.quantity"></span>
+            <button class="mx-2 bg-surface px-1.5 font-bold text-white" id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+            <span x-text="rupiah(item.total)"></span>
+          </div>
+        </div>
+      </div>
+      </template>
+      <h4 class="mt-4 text-center text-xl" x-show="!$store.cart.items.length">Cart is Empty</h4>
+      <h4 class="text-center text-xl" x-show="$store.cart.items.length">Total : <span x-text="rupiah($store.cart.total)"></span></h4>
+
+      <div class="form-container mt-4 flex w-full justify-center border-t border-dashed border-surface p-4" x-show="$store.cart.items.length">
+        <form class="w-full text-center" action="" id="checkoutForm">
+          <h5 class="text-base">Customer Detail</h5>
+          <label class="my-4 flex items-center justify-between gap-2" for="name">
+            <span>Name</span>
+            <input class="w-3/4 bg-white p-1 text-base" type="text" name="name" id="name">
+          </label>
+          <label class="my-4 flex items-center justify-between gap-2" for="email">
+            <span>Email</span>
+            <input class="w-3/4 bg-white p-1 text-base" type="email" name="email" id="email">
+          </label>
+          <label class="my-4 flex items-center justify-between gap-2" for="phone">
+            <span>Telepon</span>
+            <input class="w-3/4 bg-white p-1 text-base" type="number" name="phone" id="phone" autocomplete="off">
+          </label>
+
+          <button class="checkout-button my-4 rounded-full bg-primary px-4 py-1.5 text-base font-bold text-white" type="submit" id="checkout-button">Checkout</button>
+        </form>
+      </div>
+      
+    </div>
+    <!-- Shopping Cart end -->
+
+  </nav>
+  <!-- Navbar end -->
+
+  <!-- hero start -->
+  <section class="relative flex min-h-screen items-center bg-[url('img/Hero.png')] bg-cover bg-center bg-no-repeat after:absolute after:bottom-0 after:block after:h-1/3 after:w-full after:bg-gradient-to-t after:from-surface after:to-transparent" id="home">
+    <main class="content relative z-10 max-w-4xl px-[7%]">
+        <h1 class="text-5xl font-bold leading-tight drop-shadow-lg md:text-7xl">Malming bareng <span class="text-primary">Doi</span> gas di Doi<span class="text-primary">Ku</span></h1>
+        <p class="mt-4 text-xl leading-relaxed drop-shadow-lg md:text-2xl">Cafe Doiku menghadirkan hidangan hangat dan kebahagiaan keluarga</p>
+        <a href="#" class="mt-4 inline-block rounded-lg bg-primary px-10 py-4 text-xl text-white shadow-lg"> Order Sekarang</a>
+    </main>
+  </section>
+ <!-- hero end -->
+
     
 </body>
 </html>
