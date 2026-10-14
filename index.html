@@ -163,6 +163,167 @@
         
      </div>
   </section>
-    
+    <!-- Products Section start -->
+  <section class="px-[7%] pb-6 pt-40" id="products" x-data="products">
+    <h2 class="mb-8 text-center text-4xl"><span class="text-primary">Produk Unggulan</span> Kami</h2>
+
+
+    <div class="mt-16 grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] gap-6">
+        <template x-for="(item, index) in items" x-key="index">
+      <div class="product-card border border-gray-500 p-8 text-center">
+        <div class="product-icons flex justify-center gap-2">
+         <a class="m-1 flex h-16 w-16 items-center justify-center rounded-full border border-gray-500 hover:border-primary hover:bg-primary" href="#" @click.prevent="$store.cart.add(item)">
+              <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <use href="img/feather-sprite.svg#shopping-cart" />
+            </svg>
+          </a>
+        </div>
+        <div class="product-image py-4">
+          <img class="mx-auto h-64" :src="`img/${item.img}`" :alt="item.name">
+        </div>
+        <div class="product-content">
+          <h3 class="text-2xl" x-text="item.name"></h3>
+          <div class="product-stars p-3 text-2xl text-primary">
+            <svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="img/feather-sprite.svg#star" />
+</svg>
+            <svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="img/feather-sprite.svg#star" />
+</svg>
+            <svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="img/feather-sprite.svg#star" />
+</svg>
+            <svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="img/feather-sprite.svg#star" />
+</svg>
+            <svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="img/feather-sprite.svg#star" />
+</svg>
+          </div>
+          <div class="product-price text-lg font-bold"><span x-text="rupiah(item.price)"></span></div>
+        </div>
+      </div>
+      </template>
+    </div>
+  </section>
+  <!-- Products Section end -->
+
+
+
+
+ <!-- kontak start -->
+  <section id="contact" class="px-[7%] pb-6 pt-40">
+        <h2 class="mb-8 text-center text-4xl"><span class="text-primary">Hubungi</span> Kami</h2>
+        <p class="mx-auto max-w-lg text-center text-lg font-light leading-relaxed">Ada pertanyaan atau mau reservasi? Jangan ragu untuk menghubungi kami</p>
+        <div class="mt-8 flex flex-wrap bg-[#222]">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.360582468843!2d98.69533477394447!3d3.5037434508727117!2m3!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30313b99ba7f877b%3A0x4715b3d8f83ab36e!2sDoi%20ku!5e0!3m2!1sid!2sid!4v1767273937562!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map min-h-80 w-full object-cover md:flex-[1_1_45rem]"
+            ></iframe>
+
+            <form class="w-full p-8 text-center md:flex-[1_1_45rem]" action="https://formspree.io/f/mykkydnq" method="POST">
+                <div class="mt-8 flex items-center border border-gray-200 bg-surface pl-8">
+                    <i data-feather="user"></i>
+                    <label>
+                        <input class="w-full bg-transparent p-5 text-lg text-white outline-none" type="Name" name="Name" placeholder="Nama">
+                    </label>
+                </div>
+                <div class="mt-8 flex items-center border border-gray-200 bg-surface pl-8">
+                    <i data-feather="mail"></i>
+                    <label>
+
+                        <input class="w-full bg-transparent p-5 text-lg text-white outline-none" type="email" name="email" placeholder="Email">
+                    </label>
+                </div>
+                <div class="mt-8 flex items-center border border-gray-200 bg-surface pl-8">
+                    <i data-feather="send"></i>
+                  <label>
+                       <input class="w-full bg-transparent p-5 text-lg text-white outline-none" type="message" name="message" placeholder="Pesan">
+                    </label>
+                </div>
+                <button type="submit" class="mt-12 inline-block cursor-pointer bg-primary px-10 py-4 text-xl text-white">Kirim Pesan</button>
+            </form>
+
+
+        </div>
+
+  </section>
+ <!-- kontak end -->
+
+ <!-- footer start -->
+  <footer class="mt-12 bg-primary px-0 py-4 pb-12 text-center">
+
+    <div class="links mb-6">
+        <a class="px-4 py-3 text-white hover:text-surface" href="#home">Home</a>
+        <a class="px-4 py-3 text-white hover:text-surface" href="#about">Tentang Kami</a>
+        <a class="px-4 py-3 text-white hover:text-surface" href="#menu">Menu</a>
+        <a class="px-4 py-3 text-white hover:text-surface" href="#contact">Contact</a>
+    </div>
+
+    <div class="credit text-xs">
+        <p>Created By <a class="font-bold text-surface" href="">Tengku-Hafiz</a>. | &copy; 2026</p>
+    </div>
+
+
+  </footer>
+ <!-- footer end -->
+
+    <!-- iicon -->
+     <script>
+      feather.replace();
+    </script>
+
+
+<!--  -->
+
+
+<!-- Jawa skrip -->
+ <script src="js/script.js"></script>
 </body>
 </html>
