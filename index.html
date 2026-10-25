@@ -30,6 +30,15 @@
 
      <!-- app -->
       <script src="src/app.js"></script>
+
+     <!-- scroll reveal -->
+      <style>
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+        .reveal.show { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+          .reveal { opacity: 1; transform: none; transition: none; }
+        }
+      </style>
 </head>
 <body class="bg-surface text-white">
 
