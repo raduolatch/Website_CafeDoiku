@@ -52,3 +52,15 @@ window.onbeforeunload = () => {
     form.reset();
   }
 }
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      obs.unobserve(entry.target); // sekali aja, nggak ngulang
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
